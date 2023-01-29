@@ -1398,9 +1398,9 @@
   resolved "https://registry.npmjs.org/@nestjs/cli/-/cli-9.1.9.tgz"
   integrity sha512-oRiJArvQcYUJRO0jRWG99KkXuw+HafSnlfWcO4028gTDb4IanRwbl6fw4mELTEAaXAwDGOcuk8R0QY8H3muyiQ==
   dependencies:
-    "@angular-devkit/core" "15.0.4"
-    "@angular-devkit/schematics" "15.0.4"
-    "@angular-devkit/schematics-cli" "15.0.4"
+    "@angular-devkit/core" "14.2.2"
+    "@angular-devkit/schematics" "14.2.2"
+    "@angular-devkit/schematics-cli" "14.2.2"
     "@nestjs/schematics" "^9.0.0"
     chalk "3.0.0"
     chokidar "3.5.3"
