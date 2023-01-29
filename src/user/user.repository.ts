@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { FilterQuery, Model, ObjectId } from 'mongoose';
+import { FilterQuery, Model } from 'mongoose';
 import { LoginUserDto } from './dto/login-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './schemas/user.schema';
@@ -61,10 +61,6 @@ export class UserRepository {
     );
 
     return result;
-  }
-
-  async delete(id: string) {
-    return this.userModel.deleteOne({ id });
   }
 
   async updateAvatar(userId: string, avatarUrl: string) {
