@@ -29,6 +29,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       login: user.login,
       email: user.email,
       avatarUrl: user.avatarUrl,
+      balance: user.balance,
+      donate: user.donate,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     };

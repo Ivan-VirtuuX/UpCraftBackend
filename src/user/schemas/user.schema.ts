@@ -1,7 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Types } from 'mongoose';
+import { Document } from 'mongoose';
 
 export type UserDocument = User & Document;
+
+class Donate {
+  name?: string;
+  buyDate?: Date;
+}
 
 @Schema()
 export class User {
@@ -14,6 +19,9 @@ export class User {
   @Prop()
   avatarUrl?: string;
 
+  @Prop()
+  balance: number;
+
   @Prop({ unique: true })
   email: string;
 
@@ -25,6 +33,9 @@ export class User {
 
   @Prop()
   updatedAt: Date;
+
+  @Prop()
+  donate: Donate;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

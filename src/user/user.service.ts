@@ -1,10 +1,11 @@
-import { Inject, Injectable, forwardRef } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { UserRepository } from './user.repository';
 import { User } from './schemas/user.schema';
 import { v4 as uuidv4 } from 'uuid';
+import { DonateDto } from './dto/donate.dto';
 
 @Injectable()
 export class UserService {
@@ -19,11 +20,17 @@ export class UserService {
       password: dto.password,
       createdAt: new Date(),
       updatedAt: new Date(),
+      balance: 0,
+      donate: {},
     });
   }
 
   async findAll() {
-    return this.repository.find({});
+    return await this.repository.find({});
+  }
+
+  async buyDonate(dto: DonateDto, userId: string) {
+    return await this.repository.buyDonate(dto, userId);
   }
 
   async changePassword(userId: string, newPassword: string) {

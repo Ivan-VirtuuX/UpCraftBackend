@@ -7,13 +7,13 @@ import {
   Post,
   UseGuards,
   Patch,
-  Delete,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './schemas/user.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { DonateDto } from './dto/donate.dto';
 
 @Controller('users')
 export class UserController {
@@ -32,6 +32,12 @@ export class UserController {
   @Post()
   async createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.userService.create(createUserDto);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('donate')
+  async buyDonate(@Request() req, @Body() dto: DonateDto): Promise<User> {
+    return this.userService.buyDonate(dto, req.user.id);
   }
 
   @UseGuards(JwtAuthGuard)
