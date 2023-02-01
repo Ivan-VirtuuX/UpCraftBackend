@@ -49,17 +49,19 @@ export class UserRepository {
 
     const user = await this.userModel.findOne({ userId });
 
-    return await this.userModel.findOneAndUpdate({
-      userId,
-      $set: {
-        donate: {
-          name: dto.name,
-          buyDate: Date.now(),
-          serverName: dto.serverName,
+    return await this.userModel.findOneAndUpdate(
+      { userId },
+      {
+        $set: {
+          donate: {
+            name: dto.name,
+            buyDate: Date.now(),
+            serverName: dto.serverName,
+          },
+          balance: user.balance - donates[dto.name],
         },
-        balance: user.balance - donates[dto.name],
       },
-    });
+    );
   }
 
   async create(user: User): Promise<User> {
