@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model } from 'mongoose';
 import { DonateDto } from './dto/donate.dto';
@@ -48,6 +48,9 @@ export class UserRepository {
     const donates = { VIP: 200, PREMIUM: 300, MASTER: 450, CHAOTIC: 550 };
 
     const user = await this.userModel.findOne({ userId });
+
+    if (user.balance < donates[dto.name])
+      throw new ForbiddenException('Недостаточно средств');
 
     return await this.userModel.findOneAndUpdate(
       { userId },
